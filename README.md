@@ -19,7 +19,11 @@ pip install requests
 ```
 pip install audioplayer
 ```
-
+OR
+```
+pip install -r requirements.txt
+```
+in the quran app directory
 ### How to use:
 Put both files **audio_manager.py** and **net_tools.py** in the same folder and open **"audio_manager.py"** select a surah numbered from 1-114 from the list printed above the program will automatically download that specific surah and play it, it will also ask you that do you want to get all the surahs recited by that reciter.
 

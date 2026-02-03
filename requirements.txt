@@ -1,2 +1,3 @@
+customtkinter
 requests
-audioplayer
+python-vlc

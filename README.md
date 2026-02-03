@@ -17,7 +17,7 @@ I plan to switch over to JS or Tauri in the release development stage I am curre
    ```
    pip install -r requirements.txt
 ## Run the APP:
-Just open UI.py and the program wil start
+Just open [UI.py](./UI.py) and the program will start
 ### Credits:
 Special thanks to [u/Effective_Durian_263](https://www.reddit.com/user/Effective_Durian_263/) on [r/MuslimLounge](https://www.reddit.com/r/MuslimLounge/) for logic feedback.
 

@@ -2,6 +2,8 @@
 
 A Python-based Quran audio player built with `customtkinter` and `python-vlc`.
 
+## Roadmap:
+I plan to switch over to JS or Tauri in the release development stage I am currently using Python for Proof Of Concept.
 ## Features
 - Search bar for quick Surah selection.
 - Multi-reciter support (Sudais, Dossari, Alafasy).

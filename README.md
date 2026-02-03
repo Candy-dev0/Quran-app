@@ -19,6 +19,6 @@ I plan to switch over to JS or Tauri in the release development stage I am curre
 ## Run the APP:
 Just open UI.py and the program wil start
 ### Credits:
-Special thanks to u/Effective_Durian_263 on r/MuslimLounge for logic feedback.
+Special thanks to [u/Effective_Durian_263](https://www.reddit.com/user/Effective_Durian_263/) on [r/MuslimLounge](https://www.reddit.com/r/MuslimLounge/) for logic feedback.
 
 Audio Files From: [Quranic Audio website](https://quranicaudio.com)

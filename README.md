@@ -14,3 +14,9 @@ A Python-based Quran audio player built with `customtkinter` and `python-vlc`.
 2. Install requirements:
    ```
    pip install -r requirements.txt
+## Run the APP:
+Just open UI.py and the program wil start
+### Credits:
+Special thanks to u/Effective_Durian_263 on r/MuslimLounge for logic feedback.
+
+Audio Files From: [Quranic Audio website](https://quranicaudio.com)

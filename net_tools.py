@@ -1,40 +1,46 @@
 import os
 import requests
+import constants
 
-BASE_FOLDER = os.path.join(os.path.dirname(__file__), "reciters")
-BASE_URL = "https://download.quranicaudio.com/quran/"
-DEFAULT_RECITER = "Mishary Rashid Alafasy"
-DEFAULT_RECITER_SLUG = "mishaari_raashid_al_3afaasee"
 
-def download_surah(surah_index):
-    # Ensure folder exists
-    folder_path = os.path.join(BASE_FOLDER, DEFAULT_RECITER)
-    os.makedirs(folder_path, exist_ok=True)
+def download_surah(surah_num, reciter_name, save_path):
+    """
+    Downloads a surah based on the reciter's display name and surah number.
+    Uses the slug mapping from constants.py to build the URL.
+    """
+    # 1. Get the technical slug from the human-readable name
+    # Example: "Mishary Rashid Alafasy" -> "mishaari_raashid_al_3afaasee"
+    reciter_slug = constants.RECITERS.get(reciter_name)
 
-    # Zero-padded surah number
-    surah_str = str(surah_index).zfill(3)
-    url = f"{BASE_URL}{DEFAULT_RECITER_SLUG}/{surah_str}.mp3"
-    file_path = os.path.join(folder_path, f"{surah_str}.mp3")
+    if not reciter_slug:
+        print(f"Error: Reciter '{reciter_name}' not found in constants.")
+        return False
 
-    if os.path.exists(file_path):
-        print(f"Surah {surah_index} already downloaded.")
-        return
+    # 2. Format surah number to 3 digits (001, 002, etc.)
+    surah_str = str(surah_num).zfill(3)
 
-    print(f"Downloading surah {surah_index} ...", end=" ")
+    # 3. Build the URL using the base URL and the slug
+    url = f"{constants.BASE_URL}{reciter_slug}/{surah_str}.mp3"
+
+    # 4. Ensure the directory exists before saving
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+
     try:
-        response = requests.get(url, stream=True)
+        print(f"Downloading: {url}")
+        # Using stream=True for better memory management with large audio files
+        response = requests.get(url, stream=True, timeout=15)
+
         if response.status_code == 200:
-            with open(file_path, "wb") as f:
+            with open(save_path, "wb") as f:
                 for chunk in response.iter_content(chunk_size=8192):
-                    f.write(chunk)
-            print("Done!")
+                    if chunk:
+                        f.write(chunk)
+            print(f"Successfully saved to: {save_path}")
+            return True
         else:
-            print(f"Failed! HTTP {response.status_code}")
+            print(f"Failed! HTTP Status: {response.status_code}")
+            return False
+
     except Exception as e:
-        print(f"Error: {e}")
-
-
-def get_whole():
-    for i in range(1, 115):
-        download_surah(i)
-        print(f"{i}/114 downloaded")
+        print(f"Connection Error: {e}")
+        return False
